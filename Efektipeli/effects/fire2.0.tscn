@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://j7wt5vv4jqcf"]
+
+[ext_resource type="Texture2D" uid="uid://cy1kksqjeewx" path="res://Art/Treasure.png" id="1_bbaq8"]
+
+[sub_resource type="Gradient" id="Gradient_hekw5"]
+offsets = PackedFloat32Array(0.0514706, 0.330882, 0.636029, 0.790441, 0.889706)
+colors = PackedColorArray(0, 0, 0, 1, 0.63492, 0, 0.0650367, 1, 0.894579, 0.49059, 0, 1, 0.785249, 0.572799, 7.70092e-07, 1, 0.785249, 0.572799, 7.70092e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8yfde"]
+gradient = SubResource("Gradient_hekw5")
+
+[sub_resource type="Curve" id="Curve_4o280"]
+_data = [Vector2(0.0174927, 0), 0.0, 0.0, 0, 0, Vector2(0.233236, 0.852632), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_avj4k"]
+curve = SubResource("Curve_4o280")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1iw6s"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 10.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 151.3
+initial_velocity_max = 390.56
+angular_velocity_min = 388.71
+angular_velocity_max = 415.21
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 90.0
+angle_max = 90.0
+scale_min = 70.0
+scale_max = 70.0
+scale_curve = SubResource("CurveTexture_avj4k")
+color_ramp = SubResource("GradientTexture1D_8yfde")
+
+[sub_resource type="Environment" id="Environment_0hjol"]
+background_mode = 3
+background_energy_multiplier = 16.0
+ambient_light_color = Color(0.737255, 0.737255, 0.737255, 1)
+glow_enabled = true
+glow_intensity = 3.63
+glow_strength = 1.92
+glow_blend_mode = 1
+glow_hdr_threshold = 0.37
+glow_hdr_scale = 2.41
+adjustment_enabled = true
+adjustment_contrast = 1.44
+
+[node name="Fire2_0" type="Node2D"]
+
+[node name="Fire" type="GPUParticles2D" parent="."]
+position = Vector2(-8, 0)
+amount = 250
+process_material = SubResource("ParticleProcessMaterial_1iw6s")
+texture = ExtResource("1_bbaq8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0hjol")

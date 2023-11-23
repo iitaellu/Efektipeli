@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://cblsq8l8ym6lr"]
+
+[ext_resource type="Texture2D" uid="uid://cy1kksqjeewx" path="res://Art/Treasure.png" id="1_p8016"]
+[ext_resource type="Script" path="res://treasure/treasure.gd" id="1_tqdgl"]
+[ext_resource type="PackedScene" uid="uid://qgbnaswtvker" path="res://effects/stars.tscn" id="3_02pth"]
+[ext_resource type="PackedScene" uid="uid://bbjeg370lkte1" path="res://effects/sparcle.tscn" id="3_uw80e"]
+
+[sub_resource type="Environment" id="Environment_xf2vb"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 1.42
+glow_hdr_threshold = 0.75
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2kf1o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_24ij8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p8016")
+}],
+"loop": true,
+"name": &"treasure",
+"speed": 5.0
+}]
+
+[node name="Treasure" type="Area2D"]
+script = ExtResource("1_tqdgl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xf2vb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2kf1o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_24ij8")
+animation = &"treasure"
+
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="Sparcle" parent="Effects" instance=ExtResource("3_uw80e")]
+amount = 10
+
+[node name="stars" parent="Effects" instance=ExtResource("3_02pth")]
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

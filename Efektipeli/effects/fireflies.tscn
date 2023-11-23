@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl4mm3tmjge0w"]
+
+[ext_resource type="Texture2D" uid="uid://cy1kksqjeewx" path="res://Art/Treasure.png" id="1_8hlb0"]
+[ext_resource type="Texture2D" uid="uid://c0fwveol5nu68" path="res://Art/light.png" id="1_61q31"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_58pbk"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_disable_z = true
+gravity = Vector3(0, -40, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 2.0
+color = Color(0.890196, 0.894118, 0.196078, 1)
+hue_variation_min = 0.9
+hue_variation_max = 1.0
+turbulence_enabled = true
+turbulence_influence_max = 0.3
+turbulence_initial_displacement_min = 1.0
+turbulence_initial_displacement_max = 1.0
+
+[sub_resource type="Environment" id="Environment_lbn3a"]
+background_mode = 3
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 4.09
+background_canvas_max_layer = 10
+glow_enabled = true
+glow_intensity = 3.19
+glow_strength = 1.56
+glow_hdr_threshold = 0.17
+glow_hdr_scale = 2.88
+glow_map_strength = 1.0
+
+[node name="fireflies" type="GPUParticles2D"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_58pbk")
+texture = ExtResource("1_8hlb0")
+lifetime = 2.0
+speed_scale = 0.2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lbn3a")
+
+[node name="light" type="Node2D" parent="."]
+
+[node name="light" type="PointLight2D" parent="light"]
+color = Color(0.886275, 0.858824, 0, 1)
+texture = ExtResource("1_61q31")
+texture_scale = 10.82
+
+[node name="shadow" type="PointLight2D" parent="light"]
+color = Color(0.886275, 0.858824, 0, 1)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("1_61q31")
+texture_scale = 13.43

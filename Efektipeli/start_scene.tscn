@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://d16wrlv1amoyo"]
+
+[ext_resource type="Script" path="res://start_scene.gd" id="1_w1bam"]
+[ext_resource type="PackedScene" uid="uid://bipfohjhl5lxl" path="res://BG/BG.tscn" id="2_2mcei"]
+[ext_resource type="Texture2D" uid="uid://c0fwveol5nu68" path="res://Art/light.png" id="2_ukm1u"]
+[ext_resource type="PackedScene" uid="uid://cl4mm3tmjge0w" path="res://effects/fireflies.tscn" id="3_yn3rs"]
+
+[sub_resource type="Environment" id="Environment_ywlma"]
+background_mode = 3
+background_energy_multiplier = 16.0
+glow_enabled = true
+glow_strength = 2.0
+glow_hdr_threshold = 0.0
+
+[node name="Start_scene" type="Node2D"]
+script = ExtResource("1_w1bam")
+
+[node name="Start" type="Button" parent="."]
+modulate = Color(0, 0.631373, 0, 1)
+offset_left = 536.0
+offset_top = 208.0
+offset_right = 640.0
+offset_bottom = 264.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Start"]
+environment = SubResource("Environment_ywlma")
+
+[node name="PointLight2D" type="PointLight2D" parent="Start"]
+position = Vector2(55.6852, 30.3089)
+scale = Vector2(3.11946, 1.72521)
+color = Color(0.301961, 0.827451, 0.411765, 1)
+energy = 16.0
+shadow_enabled = true
+texture = ExtResource("2_ukm1u")
+texture_scale = 4.76
+
+[node name="Quit" type="Button" parent="."]
+modulate = Color(1, 0.121569, 0, 1)
+offset_left = 536.0
+offset_top = 320.0
+offset_right = 640.0
+offset_bottom = 376.0
+
+[node name="PointLight2D" type="PointLight2D" parent="Quit"]
+position = Vector2(56, 28)
+scale = Vector2(1.89076, 1.15546)
+color = Color(0.458824, 0, 0.0627451, 1)
+energy = 16.0
+shadow_enabled = true
+texture = ExtResource("2_ukm1u")
+texture_scale = 4.76
+
+[node name="BG" parent="." instance=ExtResource("2_2mcei")]
+
+[node name="fireflies" parent="." instance=ExtResource("3_yn3rs")]
+position = Vector2(336, 208)
+
+[node name="fireflies2" parent="." instance=ExtResource("3_yn3rs")]
+position = Vector2(776, 512)
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

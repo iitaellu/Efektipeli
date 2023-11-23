@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj6dejjes41so"]
+
+[sub_resource type="Curve" id="Curve_5h64n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.244211, 1), 0.0, 0.0, 0, 0, Vector2(0.530526, 1), 0.0, 0.0, 0, 0, Vector2(0.688421, 0.957895), 0.0, 0.0, 0, 0, Vector2(0.800857, 0.673684), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[node name="cloud" type="CPUParticles2D"]
+amount = 300
+speed_scale = 0.3
+emission_shape = 1
+emission_sphere_radius = 15.0
+gravity = Vector2(35, 0)
+angular_velocity_min = 137.43
+angular_velocity_max = 406.31
+radial_accel_min = 1.0
+radial_accel_max = 2.0
+scale_amount_min = 5.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_5h64n")
+color = Color(1, 1, 1, 0.501961)
+hue_variation_min = 0.01
+hue_variation_max = 0.01

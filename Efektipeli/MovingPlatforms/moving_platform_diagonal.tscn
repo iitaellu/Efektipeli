@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://2gofsjni8cx"]
+
+[ext_resource type="Script" path="res://MovingPlatforms/moving_platform_diagonal.gd" id="1_cf7ft"]
+[ext_resource type="Texture2D" uid="uid://ck1csr27t3rk" path="res://Art/grass.png" id="1_xrvoc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jr2vo"]
+size = Vector2(16, 16)
+
+[node name="Moving_platform_diagonal" type="Node2D"]
+script = ExtResource("1_cf7ft")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+scale = Vector2(16, 16)
+texture = ExtResource("1_xrvoc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_jr2vo")

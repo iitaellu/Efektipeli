@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://clygcadyp03ma"]
+
+[ext_resource type="Script" path="res://End_Scene.gd" id="1_fhitp"]
+[ext_resource type="Texture2D" uid="uid://c0fwveol5nu68" path="res://Art/light.png" id="2_pfb56"]
+[ext_resource type="PackedScene" uid="uid://bipfohjhl5lxl" path="res://BG/BG.tscn" id="3_8cv72"]
+[ext_resource type="PackedScene" uid="uid://cl4mm3tmjge0w" path="res://effects/fireflies.tscn" id="4_mbit1"]
+
+[sub_resource type="Environment" id="Environment_jb78f"]
+background_mode = 3
+background_energy_multiplier = 16.0
+glow_enabled = true
+glow_strength = 2.0
+glow_hdr_threshold = 0.0
+
+[node name="End_Scene" type="Node2D"]
+script = ExtResource("1_fhitp")
+
+[node name="Start" type="Button" parent="."]
+modulate = Color(0, 0.631373, 0, 1)
+offset_left = 544.0
+offset_top = 224.0
+offset_right = 640.0
+offset_bottom = 280.0
+
+[node name="PointLight2D" type="PointLight2D" parent="Start"]
+position = Vector2(48, 28)
+scale = Vector2(1.47059, 0.945378)
+color = Color(0.32549, 0.705882, 0, 1)
+energy = 16.0
+shadow_enabled = true
+texture = ExtResource("2_pfb56")
+texture_scale = 4.76
+
+[node name="Quit" type="Button" parent="."]
+modulate = Color(1, 0.121569, 0, 1)
+offset_left = 544.0
+offset_top = 312.0
+offset_right = 640.0
+offset_bottom = 368.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Quit"]
+environment = SubResource("Environment_jb78f")
+
+[node name="PointLight2D" type="PointLight2D" parent="Quit"]
+position = Vector2(48, 28)
+scale = Vector2(1.68067, 1.15546)
+color = Color(0.388235, 0, 0.0392157, 1)
+energy = 16.0
+shadow_enabled = true
+texture = ExtResource("2_pfb56")
+texture_scale = 4.76
+
+[node name="BG" parent="." instance=ExtResource("3_8cv72")]
+
+[node name="fireflies" parent="." instance=ExtResource("4_mbit1")]
+position = Vector2(128, 536)
+
+[node name="fireflies2" parent="." instance=ExtResource("4_mbit1")]
+position = Vector2(912, 96)
+
+[node name="fireflies3" parent="." instance=ExtResource("4_mbit1")]
+position = Vector2(280, 112)
+
+[node name="fireflies4" parent="." instance=ExtResource("4_mbit1")]
+position = Vector2(808, 488)
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

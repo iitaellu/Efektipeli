@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://b2ibeygolutcy"]
+
+[ext_resource type="Script" path="res://Enemy/Enemy.gd" id="1_4jmli"]
+[ext_resource type="Texture2D" uid="uid://ccc7e7rk7c8qu" path="res://Art/enemy.png" id="2_hebxv"]
+[ext_resource type="PackedScene" uid="uid://dygyd1u8txjn1" path="res://effects/enemy_death.tscn" id="3_kbvdg"]
+[ext_resource type="PackedScene" uid="uid://myo3aikxk6ms" path="res://effects/enemy_peace.tscn" id="3_wfyl3"]
+[ext_resource type="PackedScene" uid="uid://chb5sdcjkg42w" path="res://effects/enemy_angry.tscn" id="4_i1kcw"]
+[ext_resource type="Texture2D" uid="uid://c0fwveol5nu68" path="res://Art/light.png" id="5_yu0j8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8ecx"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g06ll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hebxv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbok2"]
+radius = 312.41
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1v26"]
+size = Vector2(32, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lr34"]
+size = Vector2(16, 8)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_4jmli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y8ecx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.38419e-07, -2.38419e-07)
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_g06ll")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_tbok2")
+
+[node name="PlayerDeath" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDeath"]
+shape = SubResource("RectangleShape2D_u1v26")
+
+[node name="PlayerCollision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollision"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_4lr34")
+
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="Enemy_death" parent="Effects" instance=ExtResource("3_kbvdg")]
+emitting = false
+one_shot = true
+
+[node name="Enemy_peace" parent="Effects" instance=ExtResource("3_wfyl3")]
+
+[node name="enemy_angry" parent="Effects" instance=ExtResource("4_i1kcw")]
+emitting = false
+
+[node name="light" type="Node2D" parent="Effects"]
+
+[node name="PointLight2D" type="PointLight2D" parent="Effects/light"]
+blend_mode = 2
+texture = ExtResource("5_yu0j8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
+[connection signal="body_entered" from="PlayerDeath" to="." method="_on_player_death_body_entered"]
+[connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

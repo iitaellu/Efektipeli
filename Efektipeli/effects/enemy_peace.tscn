@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://myo3aikxk6ms"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hec2j"]
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(10, 5, 0)
+particle_flag_disable_z = true
+gravity = Vector3(0, -10, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 8.54
+linear_accel_max = 29.27
+radial_accel_max = 6.1
+scale_min = 2.0
+scale_max = 6.0
+color = Color(1, 1, 1, 0.596078)
+hue_variation_min = -0.29
+hue_variation_max = 0.22
+
+[node name="Enemy_peace" type="GPUParticles2D"]
+modulate = Color(0.768627, 0.764706, 0, 1)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_hec2j")
+lifetime = 5.0
+speed_scale = 0.5
+randomness = 1.0
+collision_base_size = 0.0
+visibility_rect = Rect2(-10, -10, 20, 20)

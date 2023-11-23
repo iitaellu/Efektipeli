@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbjeg370lkte1"]
+
+[sub_resource type="Curve" id="Curve_ws1s6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.491647, 1), 0.0, 0.0, 0, 0, Vector2(0.587112, 1), 0.0, 0.0, 0, 0, Vector2(0.689737, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gm30i"]
+curve = SubResource("Curve_ws1s6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m46k7"]
+emission_shape = 1
+emission_sphere_radius = 5.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_gm30i")
+color = Color(1, 1, 0.219608, 1)
+hue_variation_min = -0.15
+hue_variation_max = 0.15
+
+[node name="Sparcle" type="GPUParticles2D"]
+process_material = SubResource("ParticleProcessMaterial_m46k7")
+speed_scale = 0.5

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://qgbnaswtvker"]
+
+[ext_resource type="Texture2D" uid="uid://c0fwveol5nu68" path="res://Art/light.png" id="1_th00x"]
+
+[node name="stars" type="Node2D"]
+
+[node name="light" type="PointLight2D" parent="."]
+position = Vector2(280.92, 0)
+scale = Vector2(2.17954, 1)
+energy = 0.63
+blend_mode = 2
+texture = ExtResource("1_th00x")
+texture_scale = 29.77
+
+[node name="shadow" type="PointLight2D" parent="."]
+position = Vector2(279.04, 0)
+scale = Vector2(2.64218, 1)
+energy = 0.35
+shadow_color = Color(0.454902, 0.454902, 0.454902, 0.67451)
+shadow_filter = 1
+shadow_filter_smooth = 3.0
+texture = ExtResource("1_th00x")
+texture_scale = 21.24

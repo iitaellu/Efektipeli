@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://bipfohjhl5lxl"]
+
+[ext_resource type="Script" path="res://BG/BG.gd" id="1_tfndw"]
+[ext_resource type="Texture2D" uid="uid://bh3cmfrqkrj2j" path="res://Art/background.png" id="2_tfjam"]
+[ext_resource type="Texture2D" uid="uid://rudrf5juralx" path="res://Art/underGround.png" id="3_t1amw"]
+[ext_resource type="PackedScene" uid="uid://cj6dejjes41so" path="res://effects/cloud.tscn" id="4_5ihgv"]
+
+[node name="BG" type="ParallaxBackground"]
+script = ExtResource("1_tfndw")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(3420, 0)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ParallaxLayer"]
+color = Color(0.133333, 0.156863, 0.184314, 1)
+
+[node name="Background" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(1706, 448)
+scale = Vector2(3420, 922)
+texture = ExtResource("2_tfjam")
+
+[node name="DownBackground" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(1696, 1608)
+scale = Vector2(3420, 1664)
+texture = ExtResource("3_t1amw")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.25, 0)
+motion_mirroring = Vector2(3420, 0)
+
+[node name="cloud4" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(224, 96)
+
+[node name="cloud12" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(2400, 136)
+
+[node name="cloud11" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(3200, 584)
+
+[node name="cloud10" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(2249, 392)
+
+[node name="cloud9" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(3024, 264)
+
+[node name="cloud8" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(2360, 616)
+
+[node name="cloud7" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(1672, 576)
+
+[node name="cloud6" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(1736, 168)
+
+[node name="cloud5" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(1336, 336)
+
+[node name="cloud" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(848, 224)
+
+[node name="cloud2" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(320, 424)
+
+[node name="cloud3" parent="ParallaxLayer2" instance=ExtResource("4_5ihgv")]
+position = Vector2(1024, 544)
